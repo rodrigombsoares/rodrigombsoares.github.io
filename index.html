@@ -31,6 +31,10 @@
         h1 {
             margin-bottom: 0;
         }
+
+        *:focus {
+            outline: none;
+        }
     </style>
 </head>
 
@@ -56,7 +60,7 @@
             </td>
             <td style="padding:20px; background-color:#f2f2f2; vertical-align:top;">
                 <!-- GAME -->
-                <canvas id="glcanvas" tabindex='1' hidden></canvas>
+                <canvas id="glcanvas" tabindex='1'></canvas>
                 <script src="https://not-fl3.github.io/miniquad-samples/mq_js_bundle.js"></script>
                 <script type="module">
                     import init, { set_wasm } from "./whack-a-gopher.js";
@@ -70,17 +74,9 @@
                         });
                         load("./whack-a-gopher_bg.wasm");
                     }
-                    window.run = function () {
-                        document.getElementById("run-container").remove();
-                        document.getElementById("glcanvas").removeAttribute("hidden");
-                        document.getElementById("glcanvas").focus();
-                        impl_run();
-                    }
+                    document.getElementById("glcanvas").focus();
+                    impl_run();
                 </script>
-                <div id="run-container"
-                    style="display: flex; justify-content: center; align-items: center; height: 100%; flex-direction: column;">
-                    <button onclick="run()">Run Game</button>
-                </div>
             </td>
         </tr>
         <tr>
