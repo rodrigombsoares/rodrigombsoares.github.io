@@ -1,45 +1,99 @@
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <title>whack-a-gopher</title>
     <style>
-        html,
-        body,
         canvas {
             margin: 0px;
             padding: 0px;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            position: absolute;
+            /* overflow: hidden; */
+            position: relative;
             z-index: 0;
+        }
+
+        img {
+            border-radius: 50%;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        td {
+            border: 1px solid black;
+        }
+
+        h1 {
+            margin-bottom: 0;
         }
     </style>
 </head>
-<body style="margin: 0; padding: 0; height: 100vh; width: 100vw;">
-    <canvas id="glcanvas" tabindex='1' hidden></canvas>
-    <script src="https://not-fl3.github.io/miniquad-samples/mq_js_bundle.js"></script>
-    <script type="module">
-        import init, { set_wasm } from "./whack-a-gopher.js";
-        async function impl_run() {
-            let wbg = await init();
-            miniquad_add_plugin({
-                register_plugin: (a) => (a.wbg = wbg),
-                on_init: () => set_wasm(wasm_exports),
-                version: "0.0.1",
-                name: "wbg",
-            });
-            load("./whack-a-gopher_bg.wasm");
-        }
-        window.run = function() {
-            document.getElementById("run-container").remove();
-            document.getElementById("glcanvas").removeAttribute("hidden");
-            document.getElementById("glcanvas").focus();
-            impl_run();
-        }
-    </script>
-    <div id="run-container" style="display: flex; justify-content: center; align-items: center; height: 100%; flex-direction: column;">
-        <button onclick="run()">Run Game</button>
-    </div>
+
+<body style="margin:0px; width:'100%' ">
+    <table>
+        <tr>
+            <td style="width:0%; padding:0px 0px; background-color:#acb3b9;"></td>
+            <td style="width:10%; padding:10px 20px; background-color:#acb3b9;">
+                <img src="assets/me.jpeg" width="100">
+            </td>
+            <td style="padding:10px 20px; background-color:#acb3b9;">
+                <h1>Rodrigo Soares</h1>
+                <i>this is a quote</i>
+            </td>
+        </tr>
+        <tr style="height:170px;">
+            <td colspan="2" style="width:15%; padding:20px; background-color:#d4d7dc; vertical-align: top;">
+                <ul style="list-style:none; padding:0px; line-height:24px;">
+                    <li><a href="#" style="color:#333;">Home</a></li>
+                    <li><a href="#" style="color:#333;">About</a></li>
+                    <li><a href="#" style="color:#333;">Contact</a></li>
+                </ul>
+            </td>
+            <td style="padding:20px; background-color:#f2f2f2; vertical-align:top;">
+                <!-- GAME -->
+                <canvas id="glcanvas" tabindex='1' hidden></canvas>
+                <script src="https://not-fl3.github.io/miniquad-samples/mq_js_bundle.js"></script>
+                <script type="module">
+                    import init, { set_wasm } from "./whack-a-gopher.js";
+                    async function impl_run() {
+                        let wbg = await init();
+                        miniquad_add_plugin({
+                            register_plugin: (a) => (a.wbg = wbg),
+                            on_init: () => set_wasm(wasm_exports),
+                            version: "0.0.1",
+                            name: "wbg",
+                        });
+                        load("./whack-a-gopher_bg.wasm");
+                    }
+                    window.run = function () {
+                        document.getElementById("run-container").remove();
+                        document.getElementById("glcanvas").removeAttribute("hidden");
+                        document.getElementById("glcanvas").focus();
+                        impl_run();
+                    }
+                </script>
+                <div id="run-container"
+                    style="display: flex; justify-content: center; align-items: center; height: 100%; flex-direction: column;">
+                    <button onclick="run()">Run Game</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="padding:5px; background-color:#acb3b9; text-align:center;">
+                <p>copyright &copy; tutorialrepublic.com</p>
+            </td>
+        </tr>
+    </table>
 </body>
+
+<!-- <body style="margin: 0; padding: 0; height: 100vh; width: 100vw;">
+    
+    
+</body> -->
+
 </html>
